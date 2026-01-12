@@ -1514,6 +1514,39 @@
         });
 			document.addEventListener("DOMContentLoaded", function () {
 
+	if (typeof layer_Book2_10 !== 'undefined') {
+
+        var spbuSelect = document.getElementById("spbuSelect");
+        if (!spbuSelect) return;
+
+        layer_Book2_10.eachLayer(function (layer) {
+
+            if (layer.feature && layer.feature.properties) {
+
+                var name = layer.feature.properties.NoCust;
+
+                if (name) {
+                    var option = document.createElement("option");
+                    option.value = layer._leaflet_id;
+                    option.text = name;
+                    spbuSelect.appendChild(option);
+                }
+            }
+        });
+
+        spbuSelect.addEventListener("change", function () {
+
+            var selectedId = this.value;
+
+            layer_Book2_10.eachLayer(function (layer) {
+                if (layer._leaflet_id == selectedId) {
+                    map.setView(layer.getLatLng(), 16);
+                    layer.openPopup();
+                }
+            });
+        });
+
+    }
     if (typeof layer_Book3_11 !== 'undefined') {
 
         var spbuSelect = document.getElementById("spbuSelect");

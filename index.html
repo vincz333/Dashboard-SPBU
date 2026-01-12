@@ -24,16 +24,33 @@
         <title></title>
     </head>
     <body>
-		<select id="spbuSelect" style="
-position:absolute;
-top:10px;
-left:50px;
-z-index:1000;
-padding:6px;
-">
-<option value="">Pilih SPBU</option>
-</select>
         <div id="map">
+			<div id="header">
+  <img src="logo.png" class="logo">
+  <div class="header-title">
+    <div class="title-main">Dashboard Distribusi SPBU</div>
+    <div class="title-sub">Fuel Terminal Cikampek</div>
+  </div>
+				<div id="control-panel">
+  <label>Nama SPBU</label>
+  <input id="searchBox" placeholder="Cari SPBU">
+
+  <label>Pilih SPBU</label>
+  <select id="spbuSelect">
+    <option value="">Pilih SPBU</option>
+  </select>
+</div>
+				<div id="legend">
+  <div class="legend-title">Legenda</div>
+  <div class="legend-item">
+    <img src="markers/spbu.png"> SPBU
+  </div>
+  <div class="legend-item">
+    <span class="kab-box"></span> Wilayah Layanan
+  </div>
+</div>
+
+</div>
         </div>
         <script src="js/qgis2web_expressions.js"></script>
         <script src="js/leaflet.js"></script>

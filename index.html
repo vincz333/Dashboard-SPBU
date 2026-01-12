@@ -33,25 +33,6 @@ padding:6px;
 ">
 <option value="">Pilih SPBU</option>
 </select>
-		var spbuSelect = document.getElementById("spbuSelect");
-
-layer_spbu.eachLayer(function(layer) {
-    var name = layer.feature.properties.NoCust;
-    var option = document.createElement("option");
-    option.value = layer._leaflet_id;
-    option.text = name;
-    spbuSelect.appendChild(option);
-});
-spbuSelect.addEventListener("change", function() {
-    var selectedId = this.value;
-
-    layer_spbu.eachLayer(function(layer) {
-        if (layer._leaflet_id == selectedId) {
-            map.setView(layer.getLatLng(), 16);
-            layer.openPopup();
-        }
-    });
-});
         <div id="map">
         </div>
         <script src="js/qgis2web_expressions.js"></script>
@@ -1514,6 +1495,23 @@ spbuSelect.addEventListener("change", function() {
         map.on("layerremove", function(){
             resetLabels([layer_Book2_10,layer_Book3_11]);
         });
+			var spbuSelect = document.getElementById("spbuSelect");
+layer_spbu.eachLayer(function(layer) {
+    var name = layer.feature.properties.NoCust;
+    var option = document.createElement("option");
+    option.value = layer._leaflet_id;
+    option.text = name;
+    spbuSelect.appendChild(option);
+});
+spbuSelect.addEventListener("change", function() {
+    var selectedId = this.value;
+    layer_spbu.eachLayer(function(layer) {
+        if (layer._leaflet_id == selectedId) {
+            map.setView(layer.getLatLng(), 16);
+            layer.openPopup();
+        }
+    });
+});
         </script>        
     </body>
 </html>

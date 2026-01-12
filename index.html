@@ -1495,23 +1495,44 @@ padding:6px;
         map.on("layerremove", function(){
             resetLabels([layer_Book2_10,layer_Book3_11]);
         });
-			var spbuSelect = document.getElementById("spbuSelect");
-layer_spbu.eachLayer(function(layer) {
-    var name = layer.feature.properties.NoCust;
-    var option = document.createElement("option");
-    option.value = layer._leaflet_id;
-    option.text = name;
-    spbuSelect.appendChild(option);
+			document.addEventListener("DOMContentLoaded", function () {
+
+    if (typeof layer_spbu !== 'undefined') {
+
+        var spbuSelect = document.getElementById("spbuSelect");
+        if (!spbuSelect) return;
+
+        layer_spbu.eachLayer(function (layer) {
+
+            if (layer.feature && layer.feature.properties) {
+
+                var name = layer.feature.properties.nama_spbu;
+
+                if (name) {
+                    var option = document.createElement("option");
+                    option.value = layer._leaflet_id;
+                    option.text = name;
+                    spbuSelect.appendChild(option);
+                }
+            }
+        });
+
+        spbuSelect.addEventListener("change", function () {
+
+            var selectedId = this.value;
+
+            layer_spbu.eachLayer(function (layer) {
+                if (layer._leaflet_id == selectedId) {
+                    map.setView(layer.getLatLng(), 16);
+                    layer.openPopup();
+                }
+            });
+        });
+
+    }
+
 });
-spbuSelect.addEventListener("change", function() {
-    var selectedId = this.value;
-    layer_spbu.eachLayer(function(layer) {
-        if (layer._leaflet_id == selectedId) {
-            map.setView(layer.getLatLng(), 16);
-            layer.openPopup();
-        }
-    });
-});
-        </script>        
+
+    </script>        
     </body>
 </html>

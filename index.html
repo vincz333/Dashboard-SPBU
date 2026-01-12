@@ -1497,12 +1497,12 @@ padding:6px;
         });
 			document.addEventListener("DOMContentLoaded", function () {
 
-    if (typeof layer_spbu !== 'undefined') {
+    if (typeof layer_Book3_11 !== 'undefined') {
 
         var spbuSelect = document.getElementById("spbuSelect");
         if (!spbuSelect) return;
 
-        layer_spbu.eachLayer(function (layer) {
+        layer_Book3_11.eachLayer(function (layer) {
 
             if (layer.feature && layer.feature.properties) {
 
@@ -1521,7 +1521,7 @@ padding:6px;
 
             var selectedId = this.value;
 
-            layer_spbu.eachLayer(function (layer) {
+            layer_Book3_11.eachLayer(function (layer) {
                 if (layer._leaflet_id == selectedId) {
                     map.setView(layer.getLatLng(), 16);
                     layer.openPopup();
